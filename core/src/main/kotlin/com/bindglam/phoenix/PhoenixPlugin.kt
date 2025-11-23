@@ -2,6 +2,7 @@ package com.bindglam.phoenix
 
 import com.bindglam.phoenix.api.Phoenix
 import com.bindglam.phoenix.api.PhoenixPlugin
+import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.manager.CommandManager
 import com.bindglam.phoenix.manager.ItemManager
 import de.tr7zw.changeme.nbtapi.NBT
@@ -27,6 +28,10 @@ class PhoenixPlugin : JavaPlugin(), PhoenixPlugin {
 
     override fun onDisable() {
         managers.forEach { it.end() }
+    }
+
+    override fun reload() {
+        managers.filterIsInstance<Reloadable>().forEach { it.reload() }
     }
 
     override fun itemManager() = ItemManager

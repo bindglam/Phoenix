@@ -38,6 +38,15 @@ object CommandManager : ManagerBase {
                         }, {
                             sender.sendMessage(Component.text("Unknown item").color(NamedTextColor.RED))
                         })
+                    }),
+
+                CommandAPICommand("reload")
+                    .executes(CommandExecutor { sender, _ ->
+                        sender.sendMessage(Component.text("Reloading").color(NamedTextColor.YELLOW))
+
+                        Phoenix.instance().reload()
+
+                        sender.sendMessage(Component.text("Successfully reloaded!").color(NamedTextColor.GREEN))
                     })
             )
             .register()

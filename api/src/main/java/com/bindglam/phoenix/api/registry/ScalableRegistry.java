@@ -43,6 +43,13 @@ public final class ScalableRegistry<T> implements WritableRegistry<T> {
     }
 
     @Override
+    public void clear() {
+        if(isLocked)
+            throw new IllegalStateException("Locked!");
+        map.clear();
+    }
+
+    @Override
     public void lock() {
         isLocked = true;
     }

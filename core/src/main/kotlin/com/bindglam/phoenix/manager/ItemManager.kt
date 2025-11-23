@@ -2,13 +2,14 @@ package com.bindglam.phoenix.manager
 
 import com.bindglam.phoenix.api.item.PhoenixItem
 import com.bindglam.phoenix.api.manager.ItemManager
-import com.bindglam.phoenix.api.manager.ManagerBase
+import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import com.bindglam.phoenix.api.registry.WritableRegistry
 import com.bindglam.phoenix.item.PackedPhoenixItem
 import com.bindglam.phoenix.item.PhoenixItemImpl
 import com.bindglam.phoenix.item.properties.PropertiesLoader
 import com.bindglam.phoenix.util.logger
+import com.bindglam.phoenix.util.unlock
 import de.tr7zw.changeme.nbtapi.NBT
 import de.tr7zw.changeme.nbtapi.NBTType
 import net.kyori.adventure.key.Key
@@ -17,7 +18,7 @@ import org.bukkit.inventory.ItemStack
 import java.io.File
 import java.util.Optional
 
-object ItemManager : ItemManager, ManagerBase {
+object ItemManager : ItemManager, Reloadable {
     private val itemsFolder = File("plugins/Phoenix/items")
 
     override fun start() {
@@ -44,6 +45,10 @@ object ItemManager : ItemManager, ManagerBase {
     }
 
     override fun end() {
+        val itemsRegistry = BuiltInRegistries.ITEMS as WritableRegistry<PhoenixItem>
+
+        itemsRegistry.unlock()
+        itemsRegistry.clear()
     }
 
     override fun isPhoenixItem(itemStack: ItemStack): Boolean {
