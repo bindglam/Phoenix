@@ -38,7 +38,7 @@ public final class ScalableRegistry<T> implements WritableRegistry<T> {
         if(isLocked)
             throw new IllegalStateException("Locked!");
         if(map.containsKey(key))
-            throw new IllegalStateException(key.asString() + "is already registered");
+            throw new IllegalStateException(key.asString() + " is already registered");
         map.put(key, value);
     }
 
