@@ -2,11 +2,13 @@ package com.bindglam.phoenix.api.item.properties;
 
 import com.bindglam.phoenix.api.item.ItemReference;
 import net.kyori.adventure.text.Component;
+import org.bukkit.inventory.ItemRarity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Objects;
 
-public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName) {
+public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, List<Component> lore, ItemRarity rarity) {
     public static Builder builder() {
         return new Builder();
     }
@@ -15,6 +17,8 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
         private ItemReference base;
 
         private Component itemName;
+        private List<Component> lore;
+        private ItemRarity rarity;
 
         private Builder() {
         }
@@ -29,8 +33,18 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
             return this;
         }
 
+        public Builder lore(List<Component> lore) {
+            this.lore = lore;
+            return this;
+        }
+
+        public Builder rarity(ItemRarity rarity) {
+            this.rarity = rarity;
+            return this;
+        }
+
         public @NotNull PhoenixItemProperties build() {
-            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName);
+            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName, lore, rarity);
         }
     }
 }
