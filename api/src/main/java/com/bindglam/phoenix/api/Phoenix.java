@@ -1,5 +1,6 @@
 package com.bindglam.phoenix.api;
 
+import com.bindglam.phoenix.api.exceptions.CannotBeInstantiateException;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -10,7 +11,7 @@ public final class Phoenix {
     private static @Nullable PhoenixPlugin plugin = null;
 
     private Phoenix() {
-        throw new RuntimeException();
+        throw new CannotBeInstantiateException();
     }
 
     public static @NotNull PhoenixPlugin instance() {
