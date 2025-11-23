@@ -4,13 +4,13 @@ import com.bindglam.phoenix.api.Phoenix
 import com.bindglam.phoenix.api.PhoenixPlugin
 import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.manager.CommandManager
-import com.bindglam.phoenix.manager.ItemManager
+import com.bindglam.phoenix.manager.ItemManagerImpl
 import de.tr7zw.changeme.nbtapi.NBT
 import org.bukkit.plugin.java.JavaPlugin
 
-class PhoenixPlugin : JavaPlugin(), PhoenixPlugin {
+class PhoenixPluginImpl : JavaPlugin(), PhoenixPlugin {
     private val managers = listOf(
-        ItemManager,
+        ItemManagerImpl,
         CommandManager
     )
 
@@ -34,5 +34,5 @@ class PhoenixPlugin : JavaPlugin(), PhoenixPlugin {
         managers.filterIsInstance<Reloadable>().forEach { it.reload() }
     }
 
-    override fun itemManager() = ItemManager
+    override fun itemManager() = ItemManagerImpl
 }

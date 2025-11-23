@@ -21,7 +21,7 @@ dependencies {
 paperPluginYaml {
     name = rootProject.name
     version = rootProject.version.toString()
-    main = "$group.PhoenixPlugin"
+    main = "$group.PhoenixPluginImpl"
     apiVersion = "1.21"
     author = "Bindglam"
     load = BukkitPluginYaml.PluginLoadOrder.STARTUP

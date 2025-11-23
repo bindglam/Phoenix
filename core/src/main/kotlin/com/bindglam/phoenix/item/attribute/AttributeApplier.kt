@@ -19,7 +19,7 @@ object AttributeApplier {
 
             val value = when(attributeContainer.getType(key)) {
                 NBTType.NBTTagInt -> nbt.getInteger(key)
-                else -> throw IllegalStateException("Unknown type")
+                else -> error("Unknown type")
             }
 
             attributes[attribute] = attribute.codec().fromPrimitiveObj(value)
@@ -36,7 +36,7 @@ object AttributeApplier {
 
             when(value) {
                 is Int -> attributeContainer.setInteger(key, value)
-                else -> throw IllegalStateException("Unknown type")
+                else -> error("Unknown type")
             }
         }
     }

@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack
 import java.io.File
 import java.util.Optional
 
-object ItemManager : ItemManager, Reloadable {
+object ItemManagerImpl : ItemManager, Reloadable {
     private val itemsFolder = File("plugins/Phoenix/items")
 
     override fun start() {
