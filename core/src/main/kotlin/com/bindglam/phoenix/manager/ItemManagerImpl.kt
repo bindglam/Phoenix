@@ -1,11 +1,12 @@
 package com.bindglam.phoenix.manager
 
+import com.bindglam.phoenix.api.item.PackedPhoenixItem
 import com.bindglam.phoenix.api.item.PhoenixItem
 import com.bindglam.phoenix.api.manager.ItemManager
 import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import com.bindglam.phoenix.api.registry.WritableRegistry
-import com.bindglam.phoenix.item.PackedPhoenixItem
+import com.bindglam.phoenix.item.PackedPhoenixItemImpl
 import com.bindglam.phoenix.item.PhoenixItemImpl
 import com.bindglam.phoenix.item.PhoenixItemLoader
 import com.bindglam.phoenix.item.attribute.AttackDamageAttribute
@@ -28,7 +29,7 @@ object ItemManagerImpl : ItemManager, Reloadable {
     var loreFormat: LoreFormat? = null
 
     override fun start() {
-        val itemsRegistry = BuiltInRegistries.ITEMS as WritableRegistry<PhoenixItem>
+        val itemsRegistry = BuiltInRegistries.ITEMS as WritableRegistry<PackedPhoenixItem>
 
         registerDefaultAttributes()
 
@@ -45,7 +46,7 @@ object ItemManagerImpl : ItemManager, Reloadable {
             config.getKeys(false).forEach { keyStr ->
                 val item =  PhoenixItemLoader.load(config.getConfigurationSection(keyStr)!!)
 
-                itemsRegistry.register(item.key(), PackedPhoenixItem(item))
+                itemsRegistry.register(item.key(), PackedPhoenixItemImpl(item))
             }
         }
 
@@ -55,7 +56,7 @@ object ItemManagerImpl : ItemManager, Reloadable {
     }
 
     override fun end() {
-        val itemsRegistry = BuiltInRegistries.ITEMS as WritableRegistry<PhoenixItem>
+        val itemsRegistry = BuiltInRegistries.ITEMS as WritableRegistry<PackedPhoenixItem>
 
         BuiltInRegistries.ATTRIBUTES.unlock()
         BuiltInRegistries.ATTRIBUTES.clear()
