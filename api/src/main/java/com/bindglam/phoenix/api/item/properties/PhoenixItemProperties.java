@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
-public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, List<Component> lore, ItemRarity rarity) {
+public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, ItemRarity rarity) {
     public static Builder builder() {
         return new Builder();
     }
@@ -17,7 +17,6 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
         private ItemReference base;
 
         private Component itemName;
-        private List<Component> lore;
         private ItemRarity rarity;
 
         private Builder() {
@@ -33,18 +32,13 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
             return this;
         }
 
-        public Builder lore(List<Component> lore) {
-            this.lore = lore;
-            return this;
-        }
-
         public Builder rarity(ItemRarity rarity) {
             this.rarity = rarity;
             return this;
         }
 
         public @NotNull PhoenixItemProperties build() {
-            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName, lore, rarity);
+            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName, rarity);
         }
     }
 }

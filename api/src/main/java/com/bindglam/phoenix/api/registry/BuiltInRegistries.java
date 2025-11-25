@@ -6,13 +6,13 @@ import com.bindglam.phoenix.api.item.attribute.Attribute;
 
 public final class BuiltInRegistries {
     public static final Registry<PhoenixItem> ITEMS = of();
-    public static final Registry<Attribute<?, ?>> ATTRIBUTES = of();
+    public static final WritableRegistry<Attribute<?, ?>> ATTRIBUTES = of();
 
     private BuiltInRegistries() {
         throw new CannotBeInstantiateException();
     }
 
-    private static <T> Registry<T> of() {
+    private static <T> WritableRegistry<T> of() {
         return new ScalableRegistry<>();
     }
 }

@@ -1,0 +1,21 @@
+package com.bindglam.phoenix.item.attribute
+
+import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer
+import com.bindglam.phoenix.api.item.attribute.Attribute
+import com.bindglam.phoenix.api.util.Codec
+import com.bindglam.phoenix.util.phoenix
+import net.kyori.adventure.key.Key
+
+class AttackDamageAttribute : Attribute<Double, Double> {
+    companion object {
+        val KEY = "attack_damage".phoenix()
+    }
+
+    override fun key(): Key = KEY
+
+    override fun codec(): Codec<Double, Double> = Codec.DOUBLE
+
+    override fun apply(builder: ItemBuilderConsumer, data: Double) {
+        builder.lore(listOf(String.format("%.1f", data)))
+    }
+}

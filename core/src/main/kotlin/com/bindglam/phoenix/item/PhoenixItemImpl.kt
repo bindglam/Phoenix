@@ -5,6 +5,7 @@ import com.bindglam.phoenix.api.item.attribute.Attribute
 import com.bindglam.phoenix.api.item.properties.PhoenixItemProperties
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import com.bindglam.phoenix.item.attribute.AttributeApplier
+import com.bindglam.phoenix.item.builder.ItemBuilder
 import de.tr7zw.changeme.nbtapi.NBT
 import net.kyori.adventure.key.Key
 import org.bukkit.inventory.ItemStack
@@ -14,13 +15,12 @@ import java.util.*
 class PhoenixItemImpl : PhoenixItem {
     private val key: Key
     private val properties: PhoenixItemProperties
-
     private val attributes: HashMap<Attribute<*, *>, Any>
 
-    constructor(key: Key, properties: PhoenixItemProperties) {
+    constructor(key: Key, properties: PhoenixItemProperties, attributes: HashMap<Attribute<*, *>, Any>) {
         this.key = key
         this.properties = properties
-        this.attributes = hashMapOf()
+        this.attributes = attributes
     }
 
     constructor(itemStack: ItemStack) {

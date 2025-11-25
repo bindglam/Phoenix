@@ -19,6 +19,10 @@ object AttributeApplier {
 
             val value = when(attributeContainer.getType(key)) {
                 NBTType.NBTTagInt -> nbt.getInteger(key)
+                NBTType.NBTTagLong -> nbt.getLong(key)
+                NBTType.NBTTagFloat -> nbt.getFloat(key)
+                NBTType.NBTTagDouble -> nbt.getDouble(key)
+                NBTType.NBTTagString -> nbt.getString(key)
                 else -> error("Unknown type")
             }
 
@@ -36,6 +40,10 @@ object AttributeApplier {
 
             when(value) {
                 is Int -> attributeContainer.setInteger(key, value)
+                is Long -> attributeContainer.setLong(key, value)
+                is Float -> attributeContainer.setFloat(key, value)
+                is Double -> attributeContainer.setDouble(key, value)
+                is String -> attributeContainer.setString(key, value)
                 else -> error("Unknown type")
             }
         }
