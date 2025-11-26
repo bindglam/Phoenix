@@ -17,10 +17,10 @@ class PhoenixItemImpl : PhoenixItem {
     private val properties: PhoenixItemProperties
     private val attributes: HashMap<Attribute<*, *>, Any>
 
-    constructor(key: Key, properties: PhoenixItemProperties, attributes: HashMap<Attribute<*, *>, Any>) {
+    constructor(key: Key, properties: PhoenixItemProperties, attributes: Map<Attribute<*, *>, Any>) {
         this.key = key
         this.properties = properties
-        this.attributes = attributes
+        this.attributes = HashMap(attributes)
     }
 
     constructor(itemStack: ItemStack) {

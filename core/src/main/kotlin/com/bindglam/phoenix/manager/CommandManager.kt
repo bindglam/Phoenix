@@ -32,7 +32,7 @@ object CommandManager : ManagerBase {
                         val amount = (args["amount"] as Int?) ?: 1
 
                         BuiltInRegistries.ITEMS.get(key).ifPresentOrElse({ item ->
-                            player.inventory.addItem(item.itemStack().apply { this.amount = amount })
+                            player.inventory.addItem(item.unpack().itemStack().apply { this.amount = amount })
 
                             sender.sendMessage(Component.text("Successfully gave an item").color(NamedTextColor.GREEN))
                         }, {

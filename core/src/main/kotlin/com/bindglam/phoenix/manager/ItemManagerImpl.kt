@@ -6,7 +6,6 @@ import com.bindglam.phoenix.api.manager.ItemManager
 import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import com.bindglam.phoenix.api.registry.WritableRegistry
-import com.bindglam.phoenix.item.PackedPhoenixItemImpl
 import com.bindglam.phoenix.item.PhoenixItemImpl
 import com.bindglam.phoenix.item.PhoenixItemLoader
 import com.bindglam.phoenix.item.attribute.AttackDamageAttribute
@@ -44,9 +43,9 @@ object ItemManagerImpl : ItemManager, Reloadable {
             val config = YamlConfiguration.loadConfiguration(file)
 
             config.getKeys(false).forEach { keyStr ->
-                val item =  PhoenixItemLoader.load(config.getConfigurationSection(keyStr)!!)
+                val item = PhoenixItemLoader.load(config.getConfigurationSection(keyStr)!!)
 
-                itemsRegistry.register(item.key(), PackedPhoenixItemImpl(item))
+                itemsRegistry.register(item.key(), item)
             }
         }
 
