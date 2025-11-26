@@ -38,12 +38,12 @@ object AttributeApplier {
         attributes.forEach { (attribute, value) ->
             val key = attribute.key().asString()
 
-            when(value) {
-                is Int -> attributeContainer.setInteger(key, value)
-                is Long -> attributeContainer.setLong(key, value)
-                is Float -> attributeContainer.setFloat(key, value)
-                is Double -> attributeContainer.setDouble(key, value)
-                is String -> attributeContainer.setString(key, value)
+            when(val rawValue = attribute.codec().toPrimitiveObj(value)) {
+                is Int -> attributeContainer.setInteger(key, rawValue)
+                is Long -> attributeContainer.setLong(key, rawValue)
+                is Float -> attributeContainer.setFloat(key, rawValue)
+                is Double -> attributeContainer.setDouble(key, rawValue)
+                is String -> attributeContainer.setString(key, rawValue)
                 else -> error("Unknown type")
             }
         }

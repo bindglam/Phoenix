@@ -1,4 +1,4 @@
-package com.bindglam.phoenix.api.util;
+package com.bindglam.phoenix.api.item.attribute;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -123,6 +123,11 @@ public interface Codec<C, P> {
     }
 
     @NotNull P toPrimitive(@NotNull C data);
+
+    @ApiStatus.Internal
+    default @NotNull P toPrimitiveObj(@NotNull Object data) {
+        return toPrimitive(complexType().cast(data));
+    }
 
     Class<C> complexType();
 

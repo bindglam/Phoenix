@@ -1,7 +1,6 @@
 package com.bindglam.phoenix.api.item.attribute;
 
 import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer;
-import com.bindglam.phoenix.api.util.Codec;
 import net.kyori.adventure.key.Key;
 import org.jetbrains.annotations.ApiStatus;
 
