@@ -12,7 +12,9 @@ import com.bindglam.phoenix.item.attribute.AttackDamageAttribute
 import com.bindglam.phoenix.item.attribute.DescriptionAttribute
 import com.bindglam.phoenix.item.builder.LoreFormat
 import com.bindglam.phoenix.item.builder.LoreFormatLoader
+import com.bindglam.phoenix.util.copyToFile
 import com.bindglam.phoenix.util.logger
+import com.bindglam.phoenix.util.resource
 import com.bindglam.phoenix.util.unlock
 import de.tr7zw.changeme.nbtapi.NBT
 import de.tr7zw.changeme.nbtapi.NBTType
@@ -32,8 +34,11 @@ object ItemManagerImpl : ItemManager, Reloadable {
 
         registerDefaultAttributes()
 
-        if(!loreFormatFile.exists())
+        if(!loreFormatFile.exists()) {
             loreFormatFile.createNewFile()
+
+            resource("lore-format.yml")!!.copyToFile(loreFormatFile)
+        }
         if(!itemsFolder.exists())
             itemsFolder.mkdirs()
 
