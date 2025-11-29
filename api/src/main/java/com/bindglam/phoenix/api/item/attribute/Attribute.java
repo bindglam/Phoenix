@@ -1,6 +1,6 @@
 package com.bindglam.phoenix.api.item.attribute;
 
-import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer;
+import com.bindglam.phoenix.api.item.builder.ItemBuilderContext;
 import net.kyori.adventure.key.Key;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -9,10 +9,10 @@ public interface Attribute<C, P> {
 
     Codec<C, P> codec();
 
-    void apply(ItemBuilderConsumer builder, C data);
+    void apply(ItemBuilderContext builder, C data);
 
     @ApiStatus.Internal
-    default void applyObj(ItemBuilderConsumer builder, Object data) {
+    default void applyObj(ItemBuilderContext builder, Object data) {
         apply(builder, codec().complexType().cast(data));
     }
 }

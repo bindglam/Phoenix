@@ -15,11 +15,11 @@ object ItemBuilder {
     fun toItemStack(item: PhoenixItem): ItemStack {
         val attributes = item.attributes()
 
-        val itemStack = item.properties().base().itemStack().clone().apply {
+        val itemStack = item.properties().base().itemStack().clone().apply stack@ {
             itemMeta = itemMeta.apply meta@ {
                 itemName(item.properties().itemName())
 
-                val placeholders = AttributeApplier.applyAttributes(this@meta, item.attributes())
+                val placeholders = AttributeApplier.applyAttributes(this@stack, this@meta, item.attributes())
                 lore(ItemManagerImpl.loreFormat!!.process placeholder@ { placeholder ->
                     val attribute = BuiltInRegistries.ATTRIBUTES.getOrThrow(placeholder.phoenix())
 

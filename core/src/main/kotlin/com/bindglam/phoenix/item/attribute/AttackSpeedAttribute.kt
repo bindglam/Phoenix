@@ -8,9 +8,9 @@ import com.bindglam.phoenix.util.phoenix
 import net.kyori.adventure.key.Key
 import org.bukkit.attribute.AttributeModifier
 
-class AttackDamageAttribute : Attribute<Double, Double> {
+class AttackSpeedAttribute : Attribute<Double, Double> {
     companion object {
-        val KEY = "attack_damage".phoenix()
+        val KEY = "attack_speed".phoenix()
     }
 
     override fun key(): Key = KEY
@@ -21,8 +21,8 @@ class AttackDamageAttribute : Attribute<Double, Double> {
         builder.lore(listOf(String.format("%.1f", data)))
 
         builder.itemMeta { meta ->
-            meta.addAttributeModifier(org.bukkit.attribute.Attribute.ATTACK_DAMAGE,
-                createBaseAttributeModifier(org.bukkit.attribute.Attribute.ATTACK_DAMAGE, data-1.0, AttributeModifier.Operation.ADD_NUMBER))
+            meta.addAttributeModifier(org.bukkit.attribute.Attribute.ATTACK_SPEED,
+                createBaseAttributeModifier(org.bukkit.attribute.Attribute.ATTACK_SPEED, data-4.0, AttributeModifier.Operation.ADD_NUMBER))
         }
     }
 }

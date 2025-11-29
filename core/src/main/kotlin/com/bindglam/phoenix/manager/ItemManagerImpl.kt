@@ -9,6 +9,7 @@ import com.bindglam.phoenix.api.registry.WritableRegistry
 import com.bindglam.phoenix.item.PhoenixItemImpl
 import com.bindglam.phoenix.item.PhoenixItemLoader
 import com.bindglam.phoenix.item.attribute.AttackDamageAttribute
+import com.bindglam.phoenix.item.attribute.AttackSpeedAttribute
 import com.bindglam.phoenix.item.attribute.DescriptionAttribute
 import com.bindglam.phoenix.item.builder.LoreFormat
 import com.bindglam.phoenix.item.builder.LoreFormatLoader
@@ -72,6 +73,7 @@ object ItemManagerImpl : ItemManager, Reloadable {
     private fun registerDefaultAttributes() {
         BuiltInRegistries.ATTRIBUTES.register(DescriptionAttribute.KEY, DescriptionAttribute())
         BuiltInRegistries.ATTRIBUTES.register(AttackDamageAttribute.KEY, AttackDamageAttribute())
+        BuiltInRegistries.ATTRIBUTES.register(AttackSpeedAttribute.KEY, AttackSpeedAttribute())
     }
 
     override fun isPhoenixItem(itemStack: ItemStack): Boolean {

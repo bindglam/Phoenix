@@ -1,12 +1,14 @@
 package com.bindglam.phoenix.item.attribute
 
 import com.bindglam.phoenix.api.item.attribute.Attribute
-import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer
+import com.bindglam.phoenix.api.item.builder.ItemBuilderContext
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import de.tr7zw.changeme.nbtapi.NBTType
 import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT
 import de.tr7zw.changeme.nbtapi.iface.ReadableNBT
 import net.kyori.adventure.key.Key
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.ItemType
 import org.bukkit.inventory.meta.ItemMeta
 import java.util.function.Consumer
 
@@ -51,11 +53,13 @@ object AttributeApplier {
         }
     }
 
-    fun applyAttributes(itemMeta: ItemMeta, attributes: Map<Attribute<*, *>, Any>): Map<Attribute<*, *>, String> {
+    fun applyAttributes(stack: ItemStack, itemMeta: ItemMeta, attributes: Map<Attribute<*, *>, Any>): Map<Attribute<*, *>, String> {
         val lore = hashMapOf<Attribute<*, *>, String>()
 
         attributes.forEach { (attribute, value) ->
-            attribute.applyObj(object : ItemBuilderConsumer {
+            attribute.applyObj(object : ItemBuilderContext {
+                override fun type(): ItemType = stack.type.asItemType()!!
+
                 override fun itemMeta(consumer: Consumer<ItemMeta>) {
                     consumer.accept(itemMeta)
                 }
