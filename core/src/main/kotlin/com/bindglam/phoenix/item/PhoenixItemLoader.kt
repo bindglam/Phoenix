@@ -17,7 +17,11 @@ object PhoenixItemLoader : ConfigLoader<PackedPhoenixItem> {
         val attributes = hashMapOf<Attribute<*, *>, () -> Any>()
         config.getConfigurationSection("attributes")!!.also { attributesConfig ->
             attributesConfig.getKeys(false).forEach { key ->
-                attributes[BuiltInRegistries.ATTRIBUTES.getOrThrow(key.phoenix())] = { attributesConfig.get(key)!! }
+                val attribute = BuiltInRegistries.ATTRIBUTES.getOrThrow(key.phoenix())
+
+                val value = attributesConfig.get(key)!!
+
+                attributes[attribute] = { value }
             }
         }
 
