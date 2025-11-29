@@ -1,7 +1,6 @@
 package com.bindglam.phoenix.item.builder
 
 import com.bindglam.phoenix.api.item.PhoenixItem
-import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import com.bindglam.phoenix.item.attribute.AttributeApplier
 import com.bindglam.phoenix.manager.ItemManagerImpl
@@ -11,39 +10,28 @@ import net.kyori.adventure.text.format.TextDecoration
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
-import java.util.function.Consumer
 
 object ItemBuilder {
     fun toItemStack(item: PhoenixItem): ItemStack {
+        val attributes = item.attributes()
+
         val itemStack = item.properties().base().itemStack().clone().apply {
             itemMeta = itemMeta.apply meta@ {
                 itemName(item.properties().itemName())
 
+                val placeholders = AttributeApplier.applyAttributes(this@meta, item.attributes())
                 lore(ItemManagerImpl.loreFormat!!.process placeholder@ { placeholder ->
-                    val attributes = item.attributes()
                     val attribute = BuiltInRegistries.ATTRIBUTES.getOrThrow(placeholder.phoenix())
 
-                    if(!attributes.contains(attribute)) return@placeholder null
+                    if(!attributes.containsKey(attribute)) return@placeholder null
 
-                    val result = StringBuilder()
-
-                    attribute.applyObj(object : ItemBuilderConsumer {
-                        override fun itemMeta(consumer: Consumer<ItemMeta>) {
-                            consumer.accept(this@meta)
-                        }
-
-                        override fun lore(l: List<String>) {
-                            l.forEach { result.append(it) }
-                        }
-                    }, attributes[attribute])
-
-                    return@placeholder result.toString()
+                    return@placeholder placeholders[attribute]
                 }.map { MiniMessage.miniMessage().deserialize(it).decoration(TextDecoration.ITALIC, false) }) // TODO : support PAPI
 
                 setRarity(item.properties().rarity())
 
-                addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                if(item.properties().hideAttributes())
+                    addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
             }
         }
 

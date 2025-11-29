@@ -1,12 +1,14 @@
 package com.bindglam.phoenix.item.attribute
 
 import com.bindglam.phoenix.api.item.attribute.Attribute
+import com.bindglam.phoenix.api.item.builder.ItemBuilderConsumer
 import com.bindglam.phoenix.api.registry.BuiltInRegistries
 import de.tr7zw.changeme.nbtapi.NBTType
 import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT
 import de.tr7zw.changeme.nbtapi.iface.ReadableNBT
 import net.kyori.adventure.key.Key
-import kotlin.collections.set
+import org.bukkit.inventory.meta.ItemMeta
+import java.util.function.Consumer
 
 object AttributeApplier {
     fun loadFromNBT(nbt: ReadableNBT): Map<Attribute<*, *>, Any> {
@@ -47,5 +49,23 @@ object AttributeApplier {
                 else -> error("Unknown type")
             }
         }
+    }
+
+    fun applyAttributes(itemMeta: ItemMeta, attributes: Map<Attribute<*, *>, Any>): Map<Attribute<*, *>, String> {
+        val lore = hashMapOf<Attribute<*, *>, String>()
+
+        attributes.forEach { (attribute, value) ->
+            attribute.applyObj(object : ItemBuilderConsumer {
+                override fun itemMeta(consumer: Consumer<ItemMeta>) {
+                    consumer.accept(itemMeta)
+                }
+
+                override fun lore(l: List<String>) {
+                    lore[attribute] = l.joinToString(" ")
+                }
+            }, value)
+        }
+
+        return lore
     }
 }
