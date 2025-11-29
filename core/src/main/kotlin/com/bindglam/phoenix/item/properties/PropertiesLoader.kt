@@ -15,5 +15,6 @@ object PropertiesLoader : ConfigLoader<PhoenixItemProperties> {
         .base(ItemReference.wrap(RegistryAccess.registryAccess().item().getOrThrow(config.getString("base")!!.minecraft()).createItemStack()))
         .itemName(config.getString("item-name")?.let { MiniMessage.miniMessage().deserialize(it) })
         .rarity(config.getString("rarity")?.let { ItemRarity.valueOf(it) })
+        .hideAttributes(config.getBoolean("hide-attributes", true))
         .build()
 }

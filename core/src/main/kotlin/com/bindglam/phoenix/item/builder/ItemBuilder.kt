@@ -9,6 +9,7 @@ import com.bindglam.phoenix.util.phoenix
 import de.tr7zw.changeme.nbtapi.NBT
 import net.kyori.adventure.text.format.TextDecoration
 import net.kyori.adventure.text.minimessage.MiniMessage
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import java.util.function.Consumer
@@ -41,6 +42,8 @@ object ItemBuilder {
                 }.map { MiniMessage.miniMessage().deserialize(it).decoration(TextDecoration.ITALIC, false) }) // TODO : support PAPI
 
                 setRarity(item.properties().rarity())
+
+                addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
             }
         }
 

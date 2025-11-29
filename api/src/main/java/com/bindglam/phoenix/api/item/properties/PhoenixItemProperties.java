@@ -5,10 +5,9 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemRarity;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Objects;
 
-public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, ItemRarity rarity) {
+public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, ItemRarity rarity, boolean hideAttributes) {
     public static Builder builder() {
         return new Builder();
     }
@@ -18,6 +17,7 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
 
         private Component itemName;
         private ItemRarity rarity;
+        private boolean hideAttributes;
 
         private Builder() {
         }
@@ -37,8 +37,13 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
             return this;
         }
 
+        public Builder hideAttributes(boolean hideAttributes) {
+            this.hideAttributes = hideAttributes;
+            return this;
+        }
+
         public @NotNull PhoenixItemProperties build() {
-            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName, rarity);
+            return new PhoenixItemProperties(Objects.requireNonNull(base, "base cannot be null"), itemName, rarity, hideAttributes);
         }
     }
 }
