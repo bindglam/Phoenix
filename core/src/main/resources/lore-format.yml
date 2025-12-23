@@ -3,4 +3,5 @@ lore:
   - "<white><bold>설명 <reset><dark_gray>: <gray>[description]"
   - ""
   - "<red><bold>공격력 <reset><dark_gray>: <dark_red>[attack_damage]"
+  - "<aqua><bold>공격 속도 <reset><dark_gray>: <blue>[attack_speed]"
   - ""
