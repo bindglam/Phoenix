@@ -4,12 +4,14 @@ import com.bindglam.phoenix.api.Phoenix
 import com.bindglam.phoenix.api.PhoenixPlugin
 import com.bindglam.phoenix.api.manager.Reloadable
 import com.bindglam.phoenix.manager.CommandManager
+import com.bindglam.phoenix.manager.CompatibilityManager
 import com.bindglam.phoenix.manager.ItemManagerImpl
-import de.tr7zw.changeme.nbtapi.NBT
 import org.bukkit.plugin.java.JavaPlugin
+import de.tr7zw.changeme.nbtapi.NBT
 
 class PhoenixPluginImpl : JavaPlugin(), PhoenixPlugin {
     private val managers = listOf(
+        CompatibilityManager,
         ItemManagerImpl,
         CommandManager
     )

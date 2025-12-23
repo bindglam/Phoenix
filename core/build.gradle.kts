@@ -1,4 +1,5 @@
 import xyz.jpenilla.resourcefactory.bukkit.BukkitPluginYaml
+import xyz.jpenilla.resourcefactory.paper.PaperPluginYaml
 
 plugins {
     id("paper-convention")
@@ -6,6 +7,7 @@ plugins {
 }
 
 repositories {
+    maven("https://repo.nexomc.com/releases")
 }
 
 dependencies {
@@ -16,6 +18,8 @@ dependencies {
     /*rootProject.project("nms").subprojects.forEach {
         implementation(project(":nms:${it.name}"))
     }*/
+
+    compileOnly("com.nexomc:nexo:1.16.1")
 }
 
 paperPluginYaml {
@@ -24,5 +28,8 @@ paperPluginYaml {
     main = "$group.PhoenixPluginImpl"
     apiVersion = "1.21"
     author = "Bindglam"
-    load = BukkitPluginYaml.PluginLoadOrder.STARTUP
+    load = BukkitPluginYaml.PluginLoadOrder.POSTWORLD
+    dependencies {
+        server(name = "Nexo", load = PaperPluginYaml.Load.BEFORE, required = false, joinClasspath = true)
+    }
 }
