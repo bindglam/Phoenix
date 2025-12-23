@@ -18,7 +18,7 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 
 object CommandManager : ManagerBase {
-    override fun start() {
+    override fun preload() {
         CommandAPI.onLoad(CommandAPIPaperConfig(Phoenix.instance().plugin()).silentLogs(true))
 
         CommandAPICommand("phoenix")
@@ -52,6 +52,9 @@ object CommandManager : ManagerBase {
             .register()
 
         CommandAPI.onEnable()
+    }
+
+    override fun start() {
     }
 
     override fun end() {
