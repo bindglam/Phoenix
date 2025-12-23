@@ -14,15 +14,19 @@ import org.bukkit.inventory.ItemRarity
 
 object PropertiesLoader : ConfigLoader<PhoenixItemProperties> {
     override fun load(config: ConfigurationSection): PhoenixItemProperties = PhoenixItemProperties.builder()
-        .base {
-            RegistryAccess.registryAccess().item().get(config.getString("base")!!.minecraft())?.createItemStack()
-                ?: CompatibilityManager.filterEnabled(ItemCompatibility::class.java)?.item(config.getString("base")!!)
-                ?: error("Unable load to base")
-        }
-        .itemName { config.getString("item-name")?.let {
-            CompatibilityManager.filterEnabled(PlaceholderCompatibility::class.java)?.parse(null, it)
-                ?.let { input -> MiniMessage.miniMessage().deserialize(input) }
-        } }
+        .base(config.getString("base")!!.let { base ->
+            {
+                RegistryAccess.registryAccess().item().get(base.minecraft())?.createItemStack()
+                    ?: CompatibilityManager.filterEnabled(ItemCompatibility::class.java)?.item(base)
+                    ?: error("Unable load to base")
+            }
+        })
+        .itemName(config.getString("item-name")?.let { itemName ->
+            {
+                CompatibilityManager.filterEnabled(PlaceholderCompatibility::class.java)?.parse(null, itemName)
+                    ?.let { input -> MiniMessage.miniMessage().deserialize(input) }
+            }
+        })
         .rarity(config.getString("rarity")?.let { ItemRarity.valueOf(it) })
         .hideAttributes(config.getBoolean("hide-attributes", true))
         .build()
