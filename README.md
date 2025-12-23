@@ -63,3 +63,38 @@ dependencies {
     // Replace <VERSION> with the latest release tag (e.g., 1.0.0)
     implementation("com.github.bindglam.Phoenix:api:<VERSION>")
 }
+```
+
+---
+
+## 🛠️ Support & Contribution
+
+### 🐛 Bug Reports & Suggestions
+Found a bug or have a feature request? Please open an issue on our [GitHub Issues](https://github.com/bindglam/Phoenix/issues) page. We value your feedback!
+
+### 🤝 Contributing
+Contributions are what make the open-source community such an amazing place!
+1. **Fork** the Project.
+2. Create your **Feature Branch** (`git checkout -b feature/AmazingFeature`).
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`).
+4. **Push** to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a **Pull Request**.
+
+---
+
+## 💬 Community
+Need quick help or want to share your creations? Join our community!
+
+<a href="https://discord.gg/CZEabRCuK8">
+  <img src="https://invidget.glitch.me/CZEabRCuK8.svg?theme=dark" alt="Discord Invite">
+</a>
+
+---
+
+## 📄 License
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/bindglam/Phoenix/blob/main/LICENSE) file for details.
+
+---
+<div align="center">
+  Made with ❤️ by <b>bindglam</b>
+</div>
