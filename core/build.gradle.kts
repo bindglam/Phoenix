@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation("de.tr7zw:item-nbt-api:2.15.3")
-    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
+    implementation("de.tr7zw:item-nbt-api:2.15.5")
+    implementation("dev.jorel:commandapi-paper-shade:11.1.0")
 
     implementation(project(":api"))
     /*rootProject.project("nms").subprojects.forEach {
