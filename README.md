@@ -39,7 +39,7 @@ Phoenix is a high-performance, lightweight Paper plugin designed to empower serv
 
 ### Requirements
 *   **Server Software**: [Paper](https://papermc.io/) or its forks (e.g., Purpur, Pufferfish).
-*   **Java Version**: Java 17 or higher recommended.
+*   **Java Version**: Java 21 or higher recommended.
 
 ### Installation
 1.  Download the latest `.jar` file from the [Releases](https://github.com/bindglam/Phoenix/releases) page.
