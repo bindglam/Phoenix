@@ -17,6 +17,7 @@ public class RegistryInitializeEvent extends Event {
         return HANDLER_LIST;
     }
 
+    @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
