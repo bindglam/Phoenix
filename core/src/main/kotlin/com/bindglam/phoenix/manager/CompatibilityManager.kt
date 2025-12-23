@@ -2,8 +2,11 @@ package com.bindglam.phoenix.manager
 
 import com.bindglam.phoenix.api.manager.ManagerBase
 import com.bindglam.phoenix.compatibility.Compatibility
+import com.bindglam.phoenix.compatibility.ItemCompatibility
+import com.bindglam.phoenix.compatibility.PlaceholderCompatibility
 import com.bindglam.phoenix.compatibility.nexo.NexoCompatibility
 import com.bindglam.phoenix.compatibility.papi.PlaceholderAPICompatibility
+import com.bindglam.phoenix.util.logger
 import org.bukkit.Bukkit
 
 object CompatibilityManager : ManagerBase {
@@ -19,6 +22,9 @@ object CompatibilityManager : ManagerBase {
                 enabledCompatibilities.add(compat)
             }
         }
+
+        logger.info("Custom item hook : ${filterEnabled(ItemCompatibility::class.java)?.requiredPlugin ?: "None"}")
+        logger.info("Placeholder hook : ${filterEnabled(PlaceholderCompatibility::class.java)?.requiredPlugin ?: "None"}")
     }
 
     override fun end() {
