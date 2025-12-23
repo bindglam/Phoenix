@@ -17,6 +17,7 @@ tasks {
         version(mcVersionString)
 
         downloadPlugins {
+            modrinth("placeholderapi", "2.11.7")
         }
     }
 

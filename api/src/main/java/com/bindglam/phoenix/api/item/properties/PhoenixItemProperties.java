@@ -6,8 +6,9 @@ import org.bukkit.inventory.ItemRarity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
-public record PhoenixItemProperties(@NotNull ItemReference base, Component itemName, ItemRarity rarity, boolean hideAttributes) {
+public record PhoenixItemProperties(@NotNull ItemReference base, Supplier<Component> itemName, ItemRarity rarity, boolean hideAttributes) {
     public static Builder builder() {
         return new Builder();
     }
@@ -15,7 +16,7 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
     public static final class Builder {
         private ItemReference base;
 
-        private Component itemName;
+        private Supplier<Component> itemName;
         private ItemRarity rarity;
         private boolean hideAttributes;
 
@@ -27,7 +28,7 @@ public record PhoenixItemProperties(@NotNull ItemReference base, Component itemN
             return this;
         }
 
-        public Builder itemName(Component itemName) {
+        public Builder itemName(Supplier<Component> itemName) {
             this.itemName = itemName;
             return this;
         }

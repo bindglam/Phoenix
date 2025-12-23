@@ -2,6 +2,7 @@ package com.bindglam.phoenix.item.properties
 
 import com.bindglam.phoenix.api.item.properties.PhoenixItemProperties
 import com.bindglam.phoenix.compatibility.ItemCompatibility
+import com.bindglam.phoenix.compatibility.PlaceholderCompatibility
 import com.bindglam.phoenix.config.ConfigLoader
 import com.bindglam.phoenix.manager.CompatibilityManager
 import com.bindglam.phoenix.util.item
@@ -18,7 +19,10 @@ object PropertiesLoader : ConfigLoader<PhoenixItemProperties> {
                 ?: CompatibilityManager.filterEnabled(ItemCompatibility::class.java)?.item(config.getString("base")!!)
                 ?: error("Unable load to base")
         }
-        .itemName(config.getString("item-name")?.let { MiniMessage.miniMessage().deserialize(it) })
+        .itemName { config.getString("item-name")?.let {
+            CompatibilityManager.filterEnabled(PlaceholderCompatibility::class.java)?.parse(null, it)
+                ?.let { input -> MiniMessage.miniMessage().deserialize(input) }
+        } }
         .rarity(config.getString("rarity")?.let { ItemRarity.valueOf(it) })
         .hideAttributes(config.getBoolean("hide-attributes", true))
         .build()

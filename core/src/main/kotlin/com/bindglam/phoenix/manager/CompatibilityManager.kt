@@ -3,10 +3,11 @@ package com.bindglam.phoenix.manager
 import com.bindglam.phoenix.api.manager.ManagerBase
 import com.bindglam.phoenix.compatibility.Compatibility
 import com.bindglam.phoenix.compatibility.nexo.NexoCompatibility
+import com.bindglam.phoenix.compatibility.papi.PlaceholderAPICompatibility
 import org.bukkit.Bukkit
 
 object CompatibilityManager : ManagerBase {
-    private val compatibilities = listOf(NexoCompatibility)
+    private val compatibilities = listOf(NexoCompatibility, PlaceholderAPICompatibility)
 
     private val enabledCompatibilities = arrayListOf<Compatibility>()
 

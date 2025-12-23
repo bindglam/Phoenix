@@ -8,6 +8,7 @@ plugins {
 
 repositories {
     maven("https://repo.nexomc.com/releases")
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
@@ -20,6 +21,7 @@ dependencies {
     }*/
 
     compileOnly("com.nexomc:nexo:1.16.1")
+    compileOnly("me.clip:placeholderapi:2.11.7")
 }
 
 paperPluginYaml {
@@ -31,5 +33,6 @@ paperPluginYaml {
     load = BukkitPluginYaml.PluginLoadOrder.POSTWORLD
     dependencies {
         server(name = "Nexo", load = PaperPluginYaml.Load.BEFORE, required = false, joinClasspath = true)
+        server(name = "PlaceholderAPI", load = PaperPluginYaml.Load.BEFORE, required = false, joinClasspath = true)
     }
 }
