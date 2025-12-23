@@ -1,1 +1,2 @@
-- Fix plugin startup bug
+- fix: plugin startup
+- fix: item name

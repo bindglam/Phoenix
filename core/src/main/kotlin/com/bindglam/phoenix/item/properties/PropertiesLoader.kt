@@ -23,8 +23,7 @@ object PropertiesLoader : ConfigLoader<PhoenixItemProperties> {
         })
         .itemName(config.getString("item-name")?.let { itemName ->
             {
-                CompatibilityManager.filterEnabled(PlaceholderCompatibility::class.java)?.parse(null, itemName)
-                    ?.let { input -> MiniMessage.miniMessage().deserialize(input) }
+                MiniMessage.miniMessage().deserialize(CompatibilityManager.filterEnabled(PlaceholderCompatibility::class.java)?.parse(null, itemName) ?: itemName)
             }
         })
         .rarity(config.getString("rarity")?.let { ItemRarity.valueOf(it) })
