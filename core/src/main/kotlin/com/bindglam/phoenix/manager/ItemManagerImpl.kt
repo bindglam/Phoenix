@@ -35,13 +35,13 @@ object ItemManagerImpl : ItemManager, Reloadable {
 
         registerDefaultAttributes()
 
+        if(!itemsFolder.exists())
+            itemsFolder.mkdirs()
         if(!loreFormatFile.exists()) {
             loreFormatFile.createNewFile()
 
             resource("lore-format.yml")!!.copyToFile(loreFormatFile)
         }
-        if(!itemsFolder.exists())
-            itemsFolder.mkdirs()
 
         loreFormat = LoreFormatLoader.load(YamlConfiguration.loadConfiguration(loreFormatFile))
 
