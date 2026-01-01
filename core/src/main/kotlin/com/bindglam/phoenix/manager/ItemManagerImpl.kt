@@ -1,5 +1,6 @@
 package com.bindglam.phoenix.manager
 
+import com.bindglam.phoenix.api.event.RegistryInitializeEvent
 import com.bindglam.phoenix.api.item.PackedPhoenixItem
 import com.bindglam.phoenix.api.item.PhoenixItem
 import com.bindglam.phoenix.api.manager.ItemManager
@@ -74,6 +75,8 @@ object ItemManagerImpl : ItemManager, Reloadable {
         BuiltInRegistries.ATTRIBUTES.register(DescriptionAttribute.KEY, DescriptionAttribute())
         BuiltInRegistries.ATTRIBUTES.register(AttackDamageAttribute.KEY, AttackDamageAttribute())
         BuiltInRegistries.ATTRIBUTES.register(AttackSpeedAttribute.KEY, AttackSpeedAttribute())
+
+        RegistryInitializeEvent().callEvent()
     }
 
     override fun isPhoenixItem(itemStack: ItemStack): Boolean {

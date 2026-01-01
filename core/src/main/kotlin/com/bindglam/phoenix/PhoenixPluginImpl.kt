@@ -36,8 +36,6 @@ class PhoenixPluginImpl : JavaPlugin(), PhoenixPlugin {
             fun ServerLoadEvent.startServices() {
                 if(type != ServerLoadEvent.LoadType.STARTUP) return
 
-                RegistryInitializeEvent().callEvent()
-
                 managers.forEach { it.start() }
             }
         }, this)
