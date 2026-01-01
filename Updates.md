@@ -1,0 +1,3 @@
+- fix: RegistryInitializeEvent
+- fix: not saved phoenix item key in nbt
+- fix: not saved attribute data in nbt
