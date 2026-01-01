@@ -38,6 +38,8 @@ object ItemBuilder {
         }
 
         NBT.modify(itemStack) { nbt ->
+            nbt.setString("phoenix_key", item.key().asString())
+
             AttributeApplier.saveInNBT(nbt, item.attributes())
         }
 
