@@ -22,11 +22,11 @@ object AttributeApplier {
             val key = attribute.key().asString()
 
             val value = when(attributeContainer.getType(key)) {
-                NBTType.NBTTagInt -> nbt.getInteger(key)
-                NBTType.NBTTagLong -> nbt.getLong(key)
-                NBTType.NBTTagFloat -> nbt.getFloat(key)
-                NBTType.NBTTagDouble -> nbt.getDouble(key)
-                NBTType.NBTTagString -> nbt.getString(key)
+                NBTType.NBTTagInt -> attributeContainer.getInteger(key)
+                NBTType.NBTTagLong -> attributeContainer.getLong(key)
+                NBTType.NBTTagFloat -> attributeContainer.getFloat(key)
+                NBTType.NBTTagDouble -> attributeContainer.getDouble(key)
+                NBTType.NBTTagString -> attributeContainer.getString(key)
                 else -> error("Unknown type")
             }
 
